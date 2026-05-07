@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 public class BookShelf {
     private final List<Book> books = new ArrayList<>();
+
     public List<Book> books() {
         return Collections.unmodifiableList(books);
     }
@@ -14,7 +15,9 @@ public class BookShelf {
     }
 
     public List<Book> arrange() {
-        return books.stream().sorted().collect(Collectors.toList());
+        return arrange(Comparator.naturalOrder());
     }
-
+    public List<Book> arrange(Comparator<Book> comparator) {
+        return books.stream().sorted(comparator).collect(Collectors.toList());
+    }
 }
